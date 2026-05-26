@@ -4,18 +4,20 @@ use std::process::exit;
 
 fn main() {
     // TODO: Uncomment the code below to pass the first stage
-    print!("$ ");
-    io::stdout().flush().unwrap();
+    while true {
+        print!("$ ");
+        io::stdout().flush().unwrap();
 
-    // Create a new variable to store user input
-    let mut input = String::new();
+        // Create a new variable to store user input
+        let mut input = String::new();
 
-    io::stdin().read_line(&mut input).unwrap_or_else(|err| {
-        eprintln!("Error: an unkown error occured: {err}");
-        exit(1);
-    });
+        io::stdin().read_line(&mut input).unwrap_or_else(|err| {
+            eprintln!("Error: an unkown error occured: {err}");
+            exit(1);
+        });
 
-    input = input.trim().to_string();
+        input = input.trim().to_string();
 
-    println!("{input}: command not found")
+        println!("{input}: command not found")
+    }
 }
