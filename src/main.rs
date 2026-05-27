@@ -2,9 +2,10 @@
 use std::io::{self, Write};
 use std::process::exit;
 
+mod command;
+
 fn main() {
-    // TODO: Uncomment the code below to pass the first stage
-    while true {
+    loop {
         print!("$ ");
         io::stdout().flush().unwrap();
 
@@ -18,6 +19,13 @@ fn main() {
 
         input = input.trim().to_string();
 
-        println!("{input}: command not found")
+        match command::command::parse(input) {
+            Ok(command) => {
+                command.execute();
+            },
+            Err(err) => {
+                eprintln!("{err}");
+            }
+        };
     }
 }
