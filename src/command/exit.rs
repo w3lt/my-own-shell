@@ -1,6 +1,6 @@
 use std::process::exit;
 
-use crate::command::command::ShellCommand;
+use crate::command::{ShellCommand, error::ShellError};
 
 pub struct ExitCommand {
     code: i32,
@@ -14,7 +14,7 @@ impl ExitCommand {
 }
 
 impl ShellCommand for ExitCommand {
-    fn execute(&self) {
+    fn execute(&self) -> Result<(), ShellError> {
         exit(self.code)
     }
 }

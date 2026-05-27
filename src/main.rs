@@ -17,14 +17,17 @@ fn main() {
             exit(1);
         });
 
-        input = input.trim().to_string();
+        let input = input.trim();
+        if input.len() == 0 {
+            continue;
+        }
 
-        match command::command::parse(input) {
+        match command::parse(input) {
             Ok(command) => {
-                command.execute();
+                let _ = command.execute();
             },
             Err(err) => {
-                eprintln!("{err}");
+                eprintln!("{err}");    
             }
         };
     }

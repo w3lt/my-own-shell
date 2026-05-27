@@ -1,4 +1,4 @@
-use crate::command::command::ShellCommand;
+use crate::command::{ShellCommand, error::ShellError};
 
 pub struct EchoCommand {
     content: String
@@ -13,7 +13,7 @@ impl EchoCommand {
 }
 
 impl ShellCommand for EchoCommand {
-    fn execute(&self) {
-        println!("{}", self.content)
+    fn execute(&self) -> Result<(), ShellError> {
+        Ok(println!("{}", self.content))
     }
 }
